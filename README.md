@@ -1,231 +1,155 @@
-# 🚗 Vehicle Insurance Management System
+# Smart Ophthalmic Monitoring System Using AI for Predictive Intra-Ocular Pressure Assessment and Early Glaucoma Detection
 
-A console-based **Vehicle Insurance Management System** developed using **Python and Object-Oriented Programming (OOP)**.
+An IoT-enabled smart tonometer prototype designed for intra-ocular pressure (IOP) monitoring, AI-assisted signal analysis, local OLED display, and remote cloud visualization.
 
-The project supports **Car Insurance** and **Bike Insurance** with policy purchase, premium payment, claim processing, policy details, authentication, premium tracking, and transaction receipts.
+## Project Overview
 
-## ✨ Features
+Glaucoma can progress without noticeable early symptoms, making regular IOP monitoring important. The proposed system combines optical sensing, embedded processing, AI-based signal analysis, and IoT connectivity to support portable and remote IOP monitoring.
 
-- 🔐 Policy authentication using Policy Number and PIN
-- 🚗 Car Insurance
-- 🏍️ Bike Insurance
-- 📄 Buy Policy
-- 💳 Pay Premium
-- 🏥 Claim Policy
-- 📋 Show Policy Details
-- 💰 Show Current Premium
-- 🧾 Generate Transaction Receipt
-- 🔄 Track Last Transaction
-- ❌ Input validation
-- 🚪 Menu-driven console application
+The project report describes a non-invasive measurement approach in which an air-puff or rebound stimulus produces slight corneal deformation. Optical sensing captures the response, the ESP32 performs embedded processing and communication, and the processed IOP result is shown on an OLED and transmitted to a cloud platform for monitoring.
 
-## 🛠️ Technologies Used
+## Key Features
 
-- Python 3
-- Object-Oriented Programming (OOP)
-- Python IDLE / any Python IDE
+- Non-contact / non-invasive IOP measurement concept
+- Optical sensing of corneal deformation
+- ESP32-based embedded controller
+- Signal conditioning and noise filtering
+- AI/CNN-based IOP prediction concept
+- Sensor-drift and motion/noise compensation concept
+- 128×64 OLED local display
+- Wi-Fi-based IoT communication
+- Cloud-based IOP data logging and visualization
+- Live pressure graph and remote monitoring
+- Abnormal-reading alert concept
+- Portable, low-cost prototype design
 
-## 🧠 OOP Concepts Used
-
-### Encapsulation
-
-Sensitive policy information is kept inside the `Insurance` class using private attributes and private methods.
-
-**Private attributes:**
-
-```python
-self.__policy_no
-self.__pin
-self.__sum_assured
-self.__premium
-self.__last_transaction
-```
-
-**Private methods:**
-
-```python
-__authenticate()
-__generate_receipt()
-__calculate_base_premium()
-```
-
-### Inheritance
-
-`CarInsurance` and `BikeInsurance` inherit the common insurance functionality from the `Insurance` parent class.
-
-```python
-class CarInsurance(Insurance):
-    ...
-
-class BikeInsurance(Insurance):
-    ...
-```
-
-### Method Overriding / Polymorphism
-
-The child classes provide different premium calculation rates by overriding the parent's private premium-calculation method:
-
-- 🚗 Car Insurance: **5% of Sum Assured**
-- 🏍️ Bike Insurance: **2% of Sum Assured**
-- 🛡️ Base Insurance: **3% of Sum Assured**
-
-## 📂 Project Structure
+## System Architecture
 
 ```text
-Vehicle-Insurance-Management-System/
-│
-├── src/
-│   └── insurance_management.py
-│
-├── demo/
-│   └── safedrive-insurance-demo.mp4
-│
-├── screenshots/
-│   ├── 01-main-menu.png
-│   ├── 02-buy-policy.png
-│   ├── 03-claim-and-policy-details.png
-│   ├── 04-last-transaction-receipt.png
-│   └── 05-premium-and-exit.png
-│
-├── README.md
-├── LICENSE
-└── .gitignore
+Eye / Corneal Response
+        │
+        ▼
+Optical / Spectral Sensor
+        │
+        ▼
+Signal Conditioning + Noise Filtering
+        │
+        ▼
+ESP32 Embedded Controller
+        │
+        ├──────────────► OLED Display
+        │
+        ▼
+AI / CNN-Based Processing
+        │
+        ▼
+Predicted IOP Value
+        │
+        ▼
+Wi-Fi / IoT Communication
+        │
+        ▼
+Cloud Platform / Dashboard
+        │
+        ├────────► Data Log
+        ├────────► Live Graph
+        └────────► Remote Alert / Monitoring
 ```
 
-## 🚀 How to Run
+## Hardware Mentioned in the Project Report
 
-### 1. Clone the repository
+- ESP32 microcontroller
+- AS7265x 18-channel spectral / optical sensor
+- Air-puff / rebound mechanism
+- MPX5010 pressure sensor
+- LM358 signal-conditioning circuit
+- ADS1115 external ADC
+- 0.96-inch SSD1306 128×64 OLED display
+- Push button / control key
+- Li-Po / rechargeable power supply
+- Wi-Fi communication through ESP32
 
-```bash
-git clone https://github.com/kirthika-2005/Vehicle-Insurance-Management-System.git
-```
+## Software & Technologies
 
-### 2. Open the project folder
+- Embedded C / Arduino IDE
+- Python
+- Thonny IDE
+- Visual Studio Code
+- CNN / Artificial Intelligence
+- IoT communication
+- ThingSpeak cloud platform
+- MQTT / HTTP communication concept
 
-```bash
-cd Vehicle-Insurance-Management-System
-```
+## AI Module
 
-### 3. Run the program
+The report describes a CNN-based AI module for analysing processed corneal-deformation/sensor patterns. The stated purpose is to reduce the effect of noise and motion artifacts, compensate for sensor drift, and estimate IOP more reliably.
 
-```bash
-python src/insurance_management.py
-```
+> **Important:** The repository does not invent or include a CNN training script that was not supplied with the project materials. Add the actual trained model, dataset, preprocessing code, and training notebook only when those project files are available.
 
-No external Python packages are required.
+## IoT Output
 
-## 🔑 Demo Accounts
+The project includes cloud-side output showing recorded IOP values and a live pressure graph. Example readings visible in the supplied output include values such as 12–19 mmHg.
 
-### 🚗 Car Insurance
+The cloud output demonstrates:
 
-| Detail | Value |
-|---|---|
-| Policy Holder | Bablu |
-| Policy Number | 630514 |
-| PIN | 2255 |
-| Sum Assured | ₹5,00,000 |
-| Vehicle Number | TN01AB1234 |
-| Category | Four Wheeler - Car |
+- Date/time-wise IOP data logging
+- Pressure visualization through a live graph
+- Remote access to recorded measurements
 
-### 🏍️ Bike Insurance
+## Embedded Source Code
 
-| Detail | Value |
-|---|---|
-| Policy Holder | Ramu |
-| Policy Number | 720811 |
-| PIN | 1122 |
-| Sum Assured | ₹1,00,000 |
-| Vehicle Number | TN02CD5678 |
-| Category | Two Wheeler - Bike |
+`src/esp32_component_test.ino` contains the Arduino/ESP32 component-test sketch supplied in the project report appendix. It tests the OLED display and push button and provides a menu entry for the TCS34725 component test.
 
-> These credentials are included only for project demonstration purposes.
+This sketch is kept separately as a **hardware/component test**, because it is not the complete AI-based IOP measurement firmware. The complete project architecture described in the report also includes the optical sensor, signal conditioning, AI processing, Wi-Fi/cloud communication, and alert modules.
 
-## 💡 Main Operations
+## Output Screenshots
 
-### 1. Buy Policy
+### Cloud Data Log
 
-Calculates the initial premium according to the selected vehicle type and stores the transaction receipt.
+![Cloud Data Log](outputs/cloud-data-log.jpeg)
 
-### 2. Pay Premium
+### Live Data Graph
 
-Authenticates the policy holder and adds the entered amount to the current premium.
+![Live Data Graph](outputs/live-data-graph.jpeg)
 
-### 3. Claim Policy
+### Prototype / OLED Output
 
-Authenticates the policy holder and processes a claim when the amount is positive and does not exceed the available Sum Assured.
+![Smart Tonometer Prototype](outputs/smart-tonometer-prototype.jpeg)
 
-### 4. Show Policy Details
+## Project Documentation
 
-Displays company, head office, vehicle category, policy holder, policy number, remaining Sum Assured, and current premium.
+The `docs/` folder contains the final project report and presentation supplied for this project.
 
-### 5. Show Premium
+## How to Run the Component Test
 
-Displays the current premium after successful authentication.
+1. Install Arduino IDE.
+2. Install the required OLED and button libraries used by the sketch.
+3. Open `src/esp32_component_test.ino`.
+4. Select the appropriate ESP32/Arduino board and COM port.
+5. Upload the sketch.
+6. Open Serial Monitor at **9600 baud**.
+7. Follow the menu shown in the Serial Monitor.
 
-### 6. List Last Transaction
+## Project Applications
 
-Displays the latest stored transaction receipt after successful authentication.
+- Home-based glaucoma monitoring
+- Remote and rural healthcare support
+- Tele-ophthalmology
+- Long-term IOP trend monitoring
+- Post-treatment follow-up
+- Research and clinical studies
 
-## 🧾 Transaction Receipt
+## Project Team
 
-The generated receipt contains:
+- Gayathri G
+- Hemalatha V
+- Kirthika P
+- Shobana G
 
-- Company Name
-- Head Office
-- Vehicle Category
-- Policy Holder
-- Policy Number
-- Transaction Type
-- Transaction Amount
-- Sum Assured
-- Current Premium
+**Department:** Electronics and Communication Engineering  
+**Institution:** Vidyaa Vikas College of Engineering and Technology, Tiruchengode  
+**Academic Year:** 2025–2026
 
-## 🔐 Authentication
+## Note on Medical Use
 
-Protected operations verify:
-
-```text
-Policy Number + PIN
-```
-
-If authentication fails, the requested protected operation is not performed.
-
-## 🎥 Project Running Video
-
-A compressed screen recording of the project execution is included in the `demo` folder.
-
-**[▶️ Watch / Open SafeDrive Project Demo](demo/safedrive-insurance-demo.mp4)**
-
-> The included MP4 has been compressed to keep the GitHub upload package below 25 MB.
-
-## 🖥️ Project Output Screenshots
-
-### Main Menu
-
-![Main Menu](screenshots/01-main-menu.png)
-
-### Buy Policy
-
-![Buy Policy](screenshots/02-buy-policy.png)
-
-### Claim and Policy Details
-
-![Claim and Policy Details](screenshots/03-claim-and-policy-details.png)
-
-### Last Transaction Receipt
-
-![Last Transaction Receipt](screenshots/04-last-transaction-receipt.png)
-
-### Premium Details and Exit
-
-![Premium Details and Exit](screenshots/05-premium-and-exit.png)
-
-## 🎯 Project Objective
-
-The objective of this project is to build a simple vehicle insurance application while applying **Python OOP concepts such as Encapsulation, Inheritance, and Method Overriding/Polymorphism** in a practical console-based system.
-
-## 👩‍💻 Author
-
-**Kirthika**
-
-GitHub: https://github.com/kirthika-2005
+This repository documents an academic prototype. It is not a clinically validated medical device and its readings should not be used for diagnosis or treatment decisions without appropriate clinical validation and professional supervision.
