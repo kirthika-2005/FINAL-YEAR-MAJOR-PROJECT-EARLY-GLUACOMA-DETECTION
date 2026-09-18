@@ -1,0 +1,21 @@
+# Arduino / build artifacts
+*.elf
+*.hex
+*.bin
+*.map
+build/
+.arduinoIDE/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
